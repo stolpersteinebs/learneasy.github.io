@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LernEasy AI – Entwurf</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>LernEasy AI – Erklären & Abfragen</h1>
+        <p class="subtitle">
+          Erster GitHub-Pages-Entwurf mit DeepSeek-Anbindung, strukturierten Aufgaben und Feedback für offene Antworten.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>Konfiguration</h2>
+        <div class="grid">
+          <label>
+            DeepSeek API-Key
+            <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off" />
+          </label>
+          <label>
+            Modell
+            <input id="model" type="text" value="deepseek-chat" />
+          </label>
+          <label>
+            Fach
+            <input id="subject" type="text" value="Mathematik" />
+          </label>
+          <label>
+            Thema
+            <input id="topic" type="text" value="Ableitungen" />
+          </label>
+          <label>
+            Niveau
+            <input id="level" type="text" value="11. Klasse" />
+          </label>
+          <label class="checkbox-row">
+            <input id="useWebContext" type="checkbox" checked />
+            Web-Kontext (Wikipedia) als Zusatzwissen nutzen
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Modus wählen</h2>
+        <div class="mode-row">
+          <button id="explainModeBtn" class="btn secondary active">Erklären</button>
+          <button id="quizModeBtn" class="btn secondary">Abfragen</button>
+        </div>
+
+        <div id="explainPanel" class="panel active">
+          <label>
+            Wunsch / Frage
+            <textarea id="explainPrompt" rows="4" placeholder="Erkläre mir die Kettenregel mit einem leichten Beispiel."></textarea>
+          </label>
+          <button id="runExplain" class="btn">Erklärung erzeugen</button>
+        </div>
+
+        <div id="quizPanel" class="panel">
+          <div class="grid">
+            <label>
+              Aufgabentyp
+              <select id="questionType">
+                <option value="open_numeric">Rechnung (objektiv)</option>
+                <option value="short_text">Kurzantwort (objektiv)</option>
+                <option value="essay">Offene Antwort / Interpretation</option>
+              </select>
+            </label>
+            <label>
+              Schwierigkeit
+              <select id="difficulty">
+                <option value="leicht">Leicht</option>
+                <option value="mittel" selected>Mittel</option>
+                <option value="schwer">Schwer</option>
+              </select>
+            </label>
+          </div>
+          <button id="generateQuestion" class="btn">Aufgabe erzeugen</button>
+
+          <div id="questionBox" class="question-box hidden">
+            <h3>Aufgabe</h3>
+            <p id="taskText"></p>
+            <label>
+              Deine Antwort
+              <textarea id="userAnswer" rows="5" placeholder="Deine Lösung..."></textarea>
+            </label>
+            <button id="submitAnswer" class="btn">Antwort prüfen</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Ausgabe</h2>
+        <pre id="output">Bereit.</pre>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
